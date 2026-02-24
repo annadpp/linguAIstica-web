@@ -1,0 +1,23 @@
+---
+import { Icon } from 'astro-icon/components';
+
+export interface Props {
+  platform: string;
+  url: string;
+  label: string;
+}
+
+const { platform, url, label } = Astro.props;
+const iconName = `ri:${platform}-fill`;
+const isExternal = platform !== 'email';
+---
+
+<a
+  href={url}
+  target={isExternal ? '_blank' : '_self'}
+  rel={isExternal ? 'noopener noreferrer' : undefined}
+  aria-label={label}
+  class="flex items-center justify-center w-8 h-8 border-2 rounded-full"
+>
+  <Icon name={iconName} class="w-5 h-5" />
+</a>

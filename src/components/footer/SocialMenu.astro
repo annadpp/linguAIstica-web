@@ -1,0 +1,16 @@
+---
+import SocialIcon from '@shared/components/SocialIcon.astro';
+import type { Props as SocialIconProps } from '@shared/components/SocialIcon.astro';
+
+interface Props {
+  socialData: SocialIconProps[];
+}
+
+const { socialData } = Astro.props;
+---
+
+<div class="flex space-x-4">
+  {socialData.map((item) => (
+    <SocialIcon {...item} />
+  ))}
+</div>

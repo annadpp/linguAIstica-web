@@ -1,0 +1,24 @@
+---
+interface MenuItem{
+    href:string;
+    label:string;
+}
+
+interface Props{
+    menuData: MenuItem[];
+}
+
+const {menuData} = Astro.props as Props;
+---
+
+<nav class="header-nav">
+    <ul class="nav-list flex items-center w-full gap-6">
+        {
+            menuData.map(({href, label})=>(
+                <li class="nav-item">
+                    <a class="nav-link font-deco text-sm" href={href}>{label}</a>
+                </li>
+            ))
+        }
+    </ul>
+</nav>

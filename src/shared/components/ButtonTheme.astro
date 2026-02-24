@@ -1,0 +1,11 @@
+---
+interface Props {
+  colorClass?: string;
+} 
+
+const { colorClass } = Astro.props;
+---
+<button
+  id="theme-toggle"
+  class:list={["w-4 h-4 rounded-full", colorClass]}>
+</button>

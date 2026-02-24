@@ -1,0 +1,14 @@
+---
+import NavMenu from "./NavMenu.astro";
+import menuData from "./menuData.json";
+import ButtonTheme from "@shared/components/ButtonTheme.astro";
+---
+
+<header class="header flex items-center justify-between px-4 pb-4 border-b-2 m-5 font-bold">
+  <p class="header-logo text-2xl"><span class="font-logo ">lingu</span><span class="font-deco font-black text-accent_two">AI</span><span class="font-logo">stica</span></p>
+  <div class="header-container flex gap-5 items-center">
+    <NavMenu menuData={menuData}/>
+    <ButtonTheme colorClass="bg-accent_two" />
+    <ButtonTheme colorClass="bg-accent_one" />
+  </div>
+</header>

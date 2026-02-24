@@ -1,0 +1,53 @@
+@import "tailwindcss";
+@import "@fontsource/inter";
+@import "@fontsource-variable/unbounded";
+@import "@fontsource-variable/dm-sans";
+
+@theme {
+  --color-bg: var(--bg);
+  --color-accent_one: var(--accent_one);
+  --color-accent_two: var(--accent_two);
+  --font-sans: 'Inter', sans-serif; 
+  --font-deco: 'Unbounded Variable', sans-serif;
+  --font-logo: 'DM Sans Variable', sans-serif;
+}
+
+@custom-variant theme-white {
+  &:where(.theme-white *) {
+    @slot;
+  }
+}
+
+@custom-variant theme-yellow {
+  &:where(.theme-yellow *) {
+    @slot;
+  }
+}
+
+@custom-variant theme-gray {
+  &:where(.theme-gray *) {
+    @slot;
+  }
+}
+
+.theme-white {
+  --bg: #FBFBFB;
+  --accent_one: #E0E0DB;
+  --accent_two: #FFE27A;
+}
+
+.theme-yellow {
+  --bg: #FFE27A;
+  --accent_one: #FBFBFB;
+  --accent_two: #E0E0DB;
+}
+
+.theme-gray {
+  --bg: #E0E0DB;
+  --accent_one: #FFE27A;
+  --accent_two: #FBFBFB;
+}
+
+html {
+  transition: background-color 0.3s, color 0.3s;
+}

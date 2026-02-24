@@ -1,0 +1,27 @@
+[
+  {
+    "platform": "instagram",
+    "url": "https://instagram.com/linguaistica",
+    "label": "linguAIstica en Instagram"
+  },
+  {
+    "platform": "tiktok",
+    "url": "https://tiktok.com/linguaistica",
+    "label": "linguAIstica en TikTok"
+  },
+  {
+    "platform": "youtube",
+    "url": "https://youtube.com/linguaistica",
+    "label": "linguAIstica en Youtube"
+  },
+  {
+    "platform": "linkedin",
+    "url": "https://linkedin.com/in/annadepablopuig",
+    "label": "Perfil de LinkedIn"
+  },
+  {
+    "platform": "mail",
+    "url": "mailto:linguaistica@gmail.com",
+    "label": "Correo electrónico"
+  }
+]
