@@ -1,0 +1,18 @@
+---
+import apoyameData from "../_data/apoyameData.json"
+import ApoyameDescription from "./ApoyameDescription.astro"
+import Logo from "../../layout/Logo.astro"
+---
+<section class="flex-grow grid place-items-center">
+  <div class="p-30 flex flex-col w-2/3 justify-center">
+    <p class="mb-6">
+      <Logo class="font-bold text-xl" /> es un proyecto que <strong class="font-deco">nace de una pasión: explicar cómo la lingüística y la IA se encuentran</strong>. Todo el contenido <strong class="font-deco">es y será gratuito</strong>, porque creo que el conocimiento debería llegar sin barreras. Pero <strong class="font-deco">si lo que hago aquí te parece valioso y quieres ayudar a que esto siga creciendo</strong> (y a tener a Talvi y Nami contentas a base de latitas), <strong class="font-deco">hay varias formas de hacerlo</strong>:
+    </p>
+    <div class="...">
+    {apoyameData.map((block) => (
+      <ApoyameDescription title={block.title} description={block.description} />
+    ))}
+  </div>
+  <p>Sea como sea, <strong class="font-deco">gracias por estar aquí</strong>.</p>
+  </div>
+</section>

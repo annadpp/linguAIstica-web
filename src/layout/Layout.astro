@@ -15,9 +15,56 @@ const {title, description} = Astro.props;
   <head>
     <BaseAstro {title} {description} />
   </head>
-  <body class="bg-bg font-sans">
+  <body class="bg-bg font-sans flex flex-col min-h-screen">
     <Header />
-    <slot />
+    <main class="w-full flex-grow flex flex-col"> 
+      <slot />
+    </main>
     <Footer />
+
+    <script>
+      const themes = ['theme-white', 'theme-yellow', 'theme-gray'];
+
+      // Función para aplicar tema y guardarlo
+      function setTheme(theme: string) {
+        const html = document.documentElement;
+        html.classList.remove(...themes);
+        html.classList.add(theme);
+        localStorage.setItem('theme', theme);
+      }
+
+      // Restaurar tema guardado al cargar la página
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme && themes.includes(savedTheme)) {
+        setTheme(savedTheme);
+      } else {
+        setTheme('theme-white');
+      }
+
+      // Manejar clics en los botones
+      document.addEventListener('click', (e) => {
+        const target = e.target;
+        if (!target || !(target instanceof Element)) return;
+
+        const button = target.closest('button[data-index]');
+        if (!button) return;
+
+        const index = button.getAttribute('data-index');
+        if (index === null) return;
+
+        const html = document.documentElement;
+        const currentTheme = themes.find(t => html.classList.contains(t)) || 'theme-white';
+        const currentIndex = themes.indexOf(currentTheme);
+
+        let newIndex;
+        if (index === '0') {
+          newIndex = (currentIndex + 1) % 3;
+        } else {
+          newIndex = (currentIndex + 2) % 3;
+        }
+
+        setTheme(themes[newIndex]);
+      });
+</script>
   </body>
 </html>

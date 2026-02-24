@@ -1,11 +1,13 @@
 ---
 interface Props {
   colorClass?: string;
-} 
+  dataIndex?: string;
+}
 
-const { colorClass } = Astro.props;
+const { colorClass, dataIndex } = Astro.props;
 ---
 <button
-  id="theme-toggle"
-  class:list={["w-4 h-4 rounded-full", colorClass]}>
-</button>
+  class:list={["w-4 h-4 rounded-full", colorClass]}
+  data-index={dataIndex}
+  aria-label="Cambiar tema"
+></button>

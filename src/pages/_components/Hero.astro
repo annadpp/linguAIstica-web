@@ -1,0 +1,19 @@
+---
+import heroData from "../_data/heroData.json"
+
+const { leftColumn, rightColumn } = heroData;
+---
+
+<section class="flex-grow grid grid-cols-2 h-full">
+  <!-- Columna izquierda: texto abajo -->
+  <div class="h-full flex flex-col justify-end text-left font-deco p-10">
+    {leftColumn.map((text, index) => (
+      <p class={index === 0 ? "mb-2" : ""}>{text}</p>
+    ))}
+  </div>
+  <!-- Columna derecha: texto centrado verticalmente -->
+  <div class="h-full flex flex-col justify-center text-left font-deco p-10">
+    <h1 class="text-6xl font-bold mb-4 leading-tight">{rightColumn.title}</h1>
+    <p class="text-xl pt-10">{rightColumn.subtitle}</p>
+  </div>
+</section>

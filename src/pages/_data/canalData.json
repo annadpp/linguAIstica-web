@@ -1,0 +1,17 @@
+[
+  {
+    "network": "YouTube",
+    "description": "Cada semana, un debate entre Talvi y Nami se convierte en vídeo nuevo. Explicaciones claras, ejemplos con código y el humor de dos gatas que nunca se ponen de acuerdo. El formato largo, para los que quieren profundizar.",
+    "url": "https://youtube.com/@linguaistica"
+  },
+  {
+    "network": "Instagram",
+    "description": "Para los que prefieren leer que ver, o quieren llevarse algo tangible de cada vídeo: carousels con ideas clave, gráficos y resúmenes. Guarda, comparte y aprende a tu ritmo.",
+    "url": "https://instagram.com/linguaistica"
+  },
+  {
+    "network": "Tiktok",
+    "description": "Aprende sobre la marcha: píldoras rápidas, anécdotas y conceptos exprés. Porque el tiempo es oro, pero el conocimiento también.",
+    "url": "https://tiktok.com/@linguaistica"
+  }
+]

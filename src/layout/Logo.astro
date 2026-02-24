@@ -1,0 +1,13 @@
+---
+export interface Props {
+  class?: string; // Para permitir clases adicionales si es necesario
+}
+
+const { class: className = "" } = Astro.props;
+---
+
+<span class={`inline-flex items-center ${className}`}>
+  <span class="font-logo">lingu</span>
+  <span class="font-deco font-black text-accent_one">AI</span>
+  <span class="font-logo">stica</span>
+</span>

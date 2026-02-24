@@ -6,18 +6,23 @@
   },
   {
     "platform": "tiktok",
-    "url": "https://tiktok.com/linguaistica",
+    "url": "https://tiktok.com/@linguaistica",
     "label": "linguAIstica en TikTok"
   },
   {
     "platform": "youtube",
-    "url": "https://youtube.com/linguaistica",
+    "url": "https://youtube.com/@linguaistica",
     "label": "linguAIstica en Youtube"
   },
   {
     "platform": "linkedin",
     "url": "https://linkedin.com/in/annadepablopuig",
     "label": "Perfil de LinkedIn"
+  },
+  {
+    "platform": "github",
+    "url": "https://github.com/annadpp",
+    "label": "Perfil de Github"
   },
   {
     "platform": "mail",
