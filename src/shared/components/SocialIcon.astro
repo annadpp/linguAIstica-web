@@ -17,7 +17,7 @@ const isExternal = platform !== 'email';
   target={isExternal ? '_blank' : '_self'}
   rel={isExternal ? 'noopener noreferrer' : undefined}
   aria-label={label}
-  class="flex items-center justify-center w-8 h-8 border-2 rounded-full"
+  class="flex items-center justify-center w-8 h-8 border-2 hover:bg-accent_one rounded-full"
 >
   <Icon name={iconName} class="w-5 h-5" />
 </a>

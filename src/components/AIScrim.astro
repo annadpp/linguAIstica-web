@@ -1,0 +1,44 @@
+---
+import AI from "@shared/components/AI.astro";
+---
+
+<div class="relative w-full h-full overflow-hidden">
+  <!-- AI 1 -->
+  <div class="accent_oneabsolute top-[0%] left-[-5%] origin-bottom animate-sway1 w-[14vw] h-auto">
+    <AI class="accent_one"/>
+  </div>
+
+  <!-- AI 2 -->
+  <div class="absolute top-[25%] left-[35%] origin-bottom animate-sway2 w-[14vw] h-auto">
+    <AI class="accent_two"/>
+  </div>
+
+  <!-- AI 3 -->
+  <div class="accent_two absolute top-[55%] left-[15%] origin-bottom animate-sway3 w-[14vw] h-auto">
+    <AI class="accent_one"/>
+  </div>
+
+  <!-- AI 4 -->
+  <div class="absolute top-[80%] left-[50%] origin-bottom animate-sway4 w-[14vw] h-auto">
+    <AI class="accent_two"/>
+  </div>
+</div>
+
+<style>
+@keyframes sway {
+  0%   { transform: rotate(-8deg); }
+  50%  { transform: rotate(8deg); }
+  100% { transform: rotate(-8deg); }
+}
+
+.animate-sway1 { animation: sway 3s ease-in-out infinite alternate; }
+.animate-sway2 { animation: sway 4s ease-in-out 0.2s infinite alternate; }
+.animate-sway3 { animation: sway 3.5s ease-in-out 0.1s infinite alternate; }
+.animate-sway4 { animation: sway 4.2s ease-in-out 0.3s infinite alternate; }
+
+/* Cortar cualquier exceso si sobresale del contenedor */
+.relative {
+  overflow: hidden;
+  height: 100%;
+}
+</style>

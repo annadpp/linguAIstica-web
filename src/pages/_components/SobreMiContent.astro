@@ -1,9 +1,10 @@
 ---
 import Logo from "../../layout/Logo.astro"
+import LogoScrim from "@components/LogoScrim.astro"
 ---
 <section class="flex-grow grid grid-cols-3">
   <!-- Columna izquierda -->
-  <div class="col-span-2 flex flex-col px-20 py-6  justify-center font-sans">
+  <div class="col-span-2 flex flex-col px-20 py-6 justify-center font-sans">
     <p class="mb-4">
       <strong class="font-deco">En mi casa, Talvi y Nami</strong> (mis gatas) <strong class="font-deco">no se ponen de acuerdo</strong>. 
       Talvi (la lingüista) defiende que el lenguaje humano es el sistema más complejo 
@@ -30,16 +31,16 @@ import Logo from "../../layout/Logo.astro"
     </p>
     <p class="pt-6 font-bold">Así que si has llegado hasta aquí...</p>
     <p>
-      → <strong class="font-deco">Si eres reclutador</strong>, echa un vistazo a mi perfil de <a href="https://linkedin.com/in/annadepablopuig" class="font-deco font-bold">LinkedIn</a>. Quizás te encajo 
-      en alguna <strong class="font-deco">posición de NLP, IA, gestión de proyectos o producto</strong>.
+      → <strong class="font-deco underline">Si eres reclutador</strong>, echa un vistazo a mi perfil de <a href="https://linkedin.com/in/annadepablopuig" class="font-deco font-bold">LinkedIn</a>. Quizás te encajo 
+      en alguna <strong class="font-deco">posición relacionada con el NLP, la IA, gestión de proyectos o producto</strong>.
     </p>
     <p>
-      → <strong class="font-deco">Si eres de los que curiosean, suscríbete a</strong> mi canal, <span class="font-logo">linguAIstica</span>, 
+      → <strong class="font-deco"><span class="underline">Si eres de los que curiosean</span>, suscríbete a</strong> mi canal, <Logo class="font-bold text-xl" />, 
       donde cada semana tendremos un debate nuevo entre Talvi y Nami (y yo intentaré poner orden).
     </p>
   </div>
   <!-- Columna derecha -->
-  <div class="text-left font-deco p-30 flex flex-col justify-center">
-
+  <div class="text-left font-deco px-10 flex flex-col justify-center">
+    <LogoScrim/>
   </div>
 </section>

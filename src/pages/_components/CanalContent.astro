@@ -1,15 +1,16 @@
 ---
 import canalData from "../_data/canalData.json"
 import CanalDescription from "./CanalDescription.astro"
+import AIScrim from "@components/AIScrim.astro"
 import Logo from "../../layout/Logo.astro"
 ---
 <section class="flex-grow grid grid-cols-3">
   <!-- Columna izquierda -->
-  <div class="flex flex-col px-20 py-6 justify-center font-sans">
-    
+  <div class="text-left font-deco px-10 flex flex-col justify-center">
+    <AIScrim />
   </div>
   <!-- Columna derecha -->
-  <div class="col-span-2 p-30 flex flex-col justify-center">
+  <div class="col-span-2 px-20 py-6  flex flex-col justify-center">
     <p class="mb-6">
       <Logo class="font-bold text-xl" /> es el <strong class="font-deco">punto de encuentro entre la lingüística y la inteligencia artificial</strong>. Un espacio donde los debates de mis gatas, Talvi y Nami, se convierten en excusa para aprender. Directo al grano: <strong class="font-deco">con rigor, código</strong> si el tema lo pide <strong class="font-deco">y humor</strong> para que entender la IA no sea un suplicio. Tú eliges dónde seguirme:
     </p>

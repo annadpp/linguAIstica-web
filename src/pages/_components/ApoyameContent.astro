@@ -1,18 +1,94 @@
 ---
-import apoyameData from "../_data/apoyameData.json"
-import ApoyameDescription from "./ApoyameDescription.astro"
-import Logo from "../../layout/Logo.astro"
+import apoyameData from "../_data/apoyameData.json";
+import ApoyameDescription from "./ApoyameDescription.astro";
+import Logo from "../../layout/Logo.astro";
+
+import CircuitOne from "@shared/components/CircuitOne.astro";
+import CircuitTwo from "@shared/components/CircuitTwo.astro";
+import CircuitThree from "@shared/components/CircuitThree.astro";
 ---
-<section class="flex-grow grid place-items-center">
-  <div class="p-30 flex flex-col w-2/3 justify-center">
-    <p class="mb-6">
-      <Logo class="font-bold text-xl" /> es un proyecto que <strong class="font-deco">nace de una pasión: explicar cómo la lingüística y la IA se encuentran</strong>. Todo el contenido <strong class="font-deco">es y será gratuito</strong>, porque creo que el conocimiento debería llegar sin barreras. Pero <strong class="font-deco">si lo que hago aquí te parece valioso y quieres ayudar a que esto siga creciendo</strong> (y a tener a Talvi y Nami contentas a base de latitas), <strong class="font-deco">hay varias formas de hacerlo</strong>:
-    </p>
-    <div class="...">
-    {apoyameData.map((block) => (
-      <ApoyameDescription title={block.title} description={block.description} />
-    ))}
+
+<section class="relative flex flex-col items-center justify-center overflow-hidden min-h-[calc(90vh-8rem)]">
+
+  <!-- CIRCUITOS EN LAS ESQUINAS -->
+  <div class="circuit absolute top-25 left-10 w-[13vw]">
+    <CircuitTwo class="accent_one" />
   </div>
-  <p>Sea como sea, <strong class="font-deco">gracias por estar aquí</strong>.</p>
+
+  <div class="circuit absolute top-25 right-10 w-[13vw]">
+    <CircuitOne class="accent_two" />
+  </div>
+
+  <div class="circuit absolute bottom-25 left-10 w-[13vw]">
+    <CircuitThree class="accent_two" />
+  </div>
+
+  <div class="circuit absolute bottom-25 right-10 w-[13vw] scale-[-1]">
+  <CircuitTwo class="accent_one" />
+</div>
+
+  <!-- CONTENIDO -->
+  <div class="relative z-10 flex flex-col justify-center w-2/3 mx-auto h-full py-6">
+    <p class="mb-6">
+      <Logo class="font-bold text-xl" /> es un proyecto que
+      <strong class="font-deco">
+        nace de una pasión: explicar cómo la lingüística y la IA se encuentran
+      </strong>.
+      Todo el contenido <strong class="font-deco">es y será gratuito</strong>.
+    </p>
+
+    <div class="flex flex-col gap-4">
+      {apoyameData.map((block) => (
+        <ApoyameDescription
+          title={block.title}
+          description={block.description}
+        />
+      ))}
+    </div>
+
+    <p class="mt-6">
+      Sea como sea, <strong class="font-deco">gracias por estar aquí</strong>.
+    </p>
   </div>
 </section>
+
+<script>
+  import { gsap } from "gsap";
+
+  const circuits = document.querySelectorAll(".circuit");
+
+  circuits.forEach((el, i) => {
+    const paths = el.querySelectorAll("path");
+
+    // Timeline en bucle
+    const tl = gsap.timeline({ repeat: -1, repeatDelay: 0.5, delay: i * 0.25 });
+
+
+    tl.fromTo(
+      paths,
+      {
+        opacity: 0,
+        strokeDasharray: 400,
+        strokeDashoffset: 500,
+      },
+      {
+        opacity: 1,
+        strokeDashoffset: 0,
+        duration: 2,
+        stagger: 0.15,
+        ease: "power2.out",
+      }
+    )
+    // Salida: espejo de la entrada, sin tocar la entrada
+    .to(
+      paths,
+      {
+        opacity: 0,
+        strokeDashoffset: 700,
+        duration: 5,
+        stagger: 0.15,
+        ease: "power2.in",
+      }
+    );
+  });
+</script>

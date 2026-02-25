@@ -1,0 +1,57 @@
+---
+import LogoMediano from "@shared/components/LogoMediano.astro";
+
+const rows = 20;
+const cols = 5;
+---
+
+<div class="relative h-full w-full overflow-hidden">
+  <div class="track">
+    {[0, 1].map(() => (
+      <div class="pattern">
+        {Array.from({ length: rows }).map((_, rowIndex) => {
+          const isRowOfThree = rowIndex % 2 === 0;
+          return (
+            <div class="grid grid-cols-5 justify-items-center">
+              {Array.from({ length: cols }).map((_, colIndex) => {
+                const showLogo = isRowOfThree
+                  ? colIndex === 0 || colIndex === 2 || colIndex === 4
+                  : colIndex === 1 || colIndex === 3;
+
+                return (
+                  <div class="w-20 h-20 flex items-center justify-center">
+                    {showLogo && (
+                      <LogoMediano class="w-16 h-16 opacity-20" />
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          );
+        })}
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .track {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: max-content; /* 🔑 CLAVE */
+    animation: scroll 40s linear infinite;
+    will-change: transform;
+  }
+
+  .pattern {
+    display: block;
+  }
+
+  @keyframes scroll {
+    to {
+      transform: translateY(-50%);
+    }
+  }
+</style>

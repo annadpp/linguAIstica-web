@@ -48,6 +48,15 @@
   --accent_two: #FBFBFB;
 }
 
+svg .accent_one {
+  color: var(--accent_one);
+}
+
+svg .accent_two {
+  color: var(--accent_two);
+}
+
 html {
   transition: background-color 0.3s, color 0.3s;
 }
+

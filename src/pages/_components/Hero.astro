@@ -1,19 +1,91 @@
 ---
-import heroData from "../_data/heroData.json"
-
+import heroData from "../_data/heroData.json";
+import LogoGrande from "@shared/components/LogoGrande.astro";
 const { leftColumn, rightColumn } = heroData;
 ---
 
-<section class="flex-grow grid grid-cols-2 h-full">
+<section class="relative flex-grow grid grid-cols-2 h-full">
+  <!-- SVG animado centrado -->
+  <div id="hero-svg" class="col-span-2 absolute inset-0 flex items-center justify-center z-0">
+    <LogoGrande class="w-0 h-0" />
+  </div>
+
   <!-- Columna izquierda: texto abajo -->
-  <div class="h-full flex flex-col justify-end text-left font-deco p-10">
+  <div class="h-full flex flex-col justify-end text-left font-deco p-10 relative z-10" id="left-column">
     {leftColumn.map((text, index) => (
-      <p class={index === 0 ? "mb-2" : ""}>{text}</p>
+      <p class="left-text {index === 0 ? 'mb-2' : ''}">{text}</p>
     ))}
   </div>
-  <!-- Columna derecha: texto centrado verticalmente -->
-  <div class="h-full flex flex-col justify-center text-left font-deco p-10">
-    <h1 class="text-6xl font-bold mb-4 leading-tight">{rightColumn.title}</h1>
-    <p class="text-xl pt-10">{rightColumn.subtitle}</p>
+
+  <!-- Columna derecha: texto centrado verticalmente con overflow-hidden -->
+  <div class="h-full flex flex-col justify-center text-left font-deco p-10 relative z-10 overflow-hidden">
+    <h1 id="hero-title" class="text-6xl font-bold mb-4 leading-tight opacity-0">{rightColumn.title}</h1>
+    <p id="hero-subtitle" class="text-xl pt-10 opacity-0">{rightColumn.subtitle}</p>
   </div>
 </section>
+
+<script>
+import { gsap } from "gsap";
+
+// Referencias
+const svgWrapper = document.getElementById('hero-svg');
+if (!svgWrapper) throw new Error("LogoGrande no encontrado");
+
+const paths = svgWrapper.querySelectorAll('path');
+
+const leftColumn = document.getElementById('left-column');
+const leftTexts = leftColumn ? leftColumn.querySelectorAll('.left-text') : [];
+
+const heroTitle = document.getElementById('hero-title');
+const heroSubtitle = document.getElementById('hero-subtitle');
+
+const tl = gsap.timeline();
+
+// 1️⃣ SVG crece solo hasta 40%, paths no se mueven
+tl.fromTo(
+  svgWrapper,
+  { scale: 0, opacity: 0 },
+  { scale: 0.4, opacity: 1, duration: 2, ease: "power2.out" }
+);
+
+// 2️⃣ Paths se separan mientras SVG sigue creciendo hasta 50%
+tl.to(
+  [paths[0], paths[1]],
+  {
+    y: (i) => (i === 0 ? 50 : -50),
+    duration: 2,
+    ease: "power2.out"
+  },
+  ">"
+);
+tl.to(svgWrapper, { scale: 0.5, duration: 2, ease: "power2.out" }, "<"); 
+
+// 3️⃣ Entrada del h1 desde la derecha
+tl.fromTo(
+  heroTitle,
+  { x: 200, opacity: 0 }, // más lejos para que entre suavemente
+  { x: 0, opacity: 1, duration: 1.2, ease: "power2.out" },
+  ">"
+);
+
+// 4️⃣ Aparición del subtítulo desde la izquierda después de que el h1 termine
+tl.fromTo(
+  heroSubtitle,
+  { x: -100, opacity: 0 },
+  { x: 0, opacity: 1, duration: 1, ease: "power2.out" },
+  ">"
+);
+
+// 5️⃣ Animación infinita de los <p> de la columna izquierda, añadida al final del timeline
+if (leftTexts.length > 0) {
+  leftTexts.forEach(el => gsap.set(el, { opacity: 0 })); // inicializamos invisible
+
+  const loopTl = gsap.timeline({ repeat: -1, repeatDelay: 1.5 });
+  leftTexts.forEach(el => {
+    loopTl.to(el, { opacity: 1, duration: 1 })
+          .to(el, { opacity: 0, duration: 1, delay: 1.5 });
+  });
+
+  tl.add(loopTl, ">"); // se inicia solo después de que termine todo lo anterior
+}
+</script>

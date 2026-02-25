@@ -1,24 +1,34 @@
 ---
-interface MenuItem{
-    href:string;
-    label:string;
+interface MenuItem {
+  href: string;
+  label: string;
 }
 
-interface Props{
-    menuData: MenuItem[];
+interface Props {
+  menuData: MenuItem[];
 }
 
 const {menuData} = Astro.props as Props;
+const currentPath = Astro.url.pathname;
 ---
 
 <nav class="header-nav">
-    <ul class="nav-list flex items-center w-full gap-6">
-        {
-            menuData.map(({href, label})=>(
-                <li class="nav-item">
-                    <a class="nav-link font-deco text-sm" href={href}>{label}</a>
-                </li>
-            ))
-        }
-    </ul>
+  <ul class="nav-list flex items-center w-full gap-6">
+    {menuData.map(({href, label}) => {
+      const isActive = href === Astro.url.pathname;
+      return (
+        <li class="nav-item">
+          <a 
+  class={`nav-link font-deco text-sm 
+    ${isActive 
+      ? 'underline underline-offset-4 decoration-current' 
+      : 'hover:underline hover:decoration-accent_one hover:underline-offset-4'}`} 
+  href={href}
+>
+  {label}
+</a>
+        </li>
+      )
+    })}
+  </ul>
 </nav>
