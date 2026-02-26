@@ -8,43 +8,53 @@ import CircuitTwo from "@shared/components/CircuitTwo.astro";
 import CircuitThree from "@shared/components/CircuitThree.astro";
 ---
 
-<section class="relative flex flex-col items-center justify-center overflow-hidden min-h-[calc(90vh-8rem)]">
-
-  <!-- CIRCUITOS EN LAS ESQUINAS -->
-  <div class="circuit absolute top-25 left-10 w-[13vw]">
+<section class="relative grid place-items-center overflow-hidden flex-grow">
+  <!-- CIRCUITOS -->
+  <div class="circuit absolute top-25 left-10 w-[11vw]  xl:w-[13vw]">
     <CircuitTwo class="accent_one" />
   </div>
 
-  <div class="circuit absolute top-25 right-10 w-[13vw]">
+  <div class="circuit absolute top-25 right-10 w-[11vw]  xl:w-[13vw]">
     <CircuitOne class="accent_two" />
   </div>
 
-  <div class="circuit absolute bottom-25 left-10 w-[13vw]">
+  <div class="circuit absolute bottom-25 left-10 w-[11vw]  xl:w-[13vw]">
     <CircuitThree class="accent_two" />
   </div>
 
-  <div class="circuit absolute bottom-25 right-10 w-[13vw] scale-[-1]">
-  <CircuitTwo class="accent_one" />
-</div>
+  <div class="circuit absolute bottom-25 right-10 w-[11vw] xl:w-[13vw] scale-[-1]">
+    <CircuitTwo class="accent_one" />
+  </div>
 
   <!-- CONTENIDO -->
-  <div class="relative z-10 flex flex-col justify-center w-2/3 mx-auto h-full py-6">
+  <div
+    class="
+      relative z-10
+      grid
+      w-[65vw]
+      max-h-[70vh]
+      overflow-y-auto
+      px-20    
+      xl:text-md 2xl:text-lg
+    "
+  >
     <p class="mb-6">
       <Logo class="font-bold text-xl" /> es un proyecto que
       <strong class="font-deco">
         nace de una pasión: explicar cómo la lingüística y la IA se encuentran
-      </strong>.
+    </strong>.
       Todo el contenido <strong class="font-deco">es y será gratuito</strong>.
     </p>
 
     <div class="flex flex-col gap-4">
-      {apoyameData.map((block) => (
-        <ApoyameDescription
-          title={block.title}
-          description={block.description}
-        />
-      ))}
-    </div>
+  {apoyameData.map((block) => (
+    <ApoyameDescription
+      title={block.title}
+      description={block.description}
+      url={block.url}
+    />
+  ))}
+</div>
 
     <p class="mt-6">
       Sea como sea, <strong class="font-deco">gracias por estar aquí</strong>.

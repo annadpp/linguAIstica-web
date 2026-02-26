@@ -4,23 +4,25 @@ import LogoGrande from "@shared/components/LogoGrande.astro";
 const { leftColumn, rightColumn } = heroData;
 ---
 
-<section class="relative flex-grow grid grid-cols-2 h-full">
+<section class="relative flex-1 flex-grow grid grid-cols-2 overflow-hidden">
   <!-- SVG animado centrado -->
   <div id="hero-svg" class="col-span-2 absolute inset-0 flex items-center justify-center z-0">
     <LogoGrande class="w-0 h-0" />
   </div>
 
   <!-- Columna izquierda: texto abajo -->
-  <div class="h-full flex flex-col justify-end text-left font-deco p-10 relative z-10" id="left-column">
-    {leftColumn.map((text, index) => (
-      <p class="left-text {index === 0 ? 'mb-2' : ''}">{text}</p>
+  <div class="flex flex-col justify-end md:text-sm lg:text-md xl:text-lg 2xl:text-xl font-inter p-10 relative z-10" id="left-column">
+    {leftColumn?.map((item, index) => (
+      <p class={`left-text ${index === 0 ? 'mb-2' : ''}`}>
+        <a href={item.url}>{item.text}</a>
+      </p>
     ))}
   </div>
 
   <!-- Columna derecha: texto centrado verticalmente con overflow-hidden -->
-  <div class="h-full flex flex-col justify-center text-left font-deco p-10 relative z-10 overflow-hidden">
-    <h1 id="hero-title" class="text-6xl font-bold mb-4 leading-tight opacity-0">{rightColumn.title}</h1>
-    <p id="hero-subtitle" class="text-xl pt-10 opacity-0">{rightColumn.subtitle}</p>
+  <div class="h-full flex flex-col justify-center text-left font-deco md:px-[6vw] lg:px-[7vw] relative overflow-hidden">
+    <h1 id="hero-title" class="md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold mb-4 leading-tight whitespace-pre-line">{rightColumn.title}</h1>
+    <p id="hero-subtitle" class="md:text-md lg:text-lg xl:text-xl 2xl:text-2xl lg:pt-6 xl:pt-8 2xl:pt-10 font-inter">{rightColumn.subtitle}</p>
   </div>
 </section>
 
@@ -33,8 +35,8 @@ if (!svgWrapper) throw new Error("LogoGrande no encontrado");
 
 const paths = svgWrapper.querySelectorAll('path');
 
-const leftColumn = document.getElementById('left-column');
-const leftTexts = leftColumn ? leftColumn.querySelectorAll('.left-text') : [];
+const leftColumnEl = document.getElementById('left-column');
+const leftTexts = leftColumnEl ? leftColumnEl.querySelectorAll('.left-text') : [];
 
 const heroTitle = document.getElementById('hero-title');
 const heroSubtitle = document.getElementById('hero-subtitle');
@@ -45,7 +47,7 @@ const tl = gsap.timeline();
 tl.fromTo(
   svgWrapper,
   { scale: 0, opacity: 0 },
-  { scale: 0.4, opacity: 1, duration: 2, ease: "power2.out" }
+  { scale: 0.3, opacity: 1, duration: 2, ease: "power2.out" }
 );
 
 // 2️⃣ Paths se separan mientras SVG sigue creciendo hasta 50%
@@ -58,12 +60,12 @@ tl.to(
   },
   ">"
 );
-tl.to(svgWrapper, { scale: 0.5, duration: 2, ease: "power2.out" }, "<"); 
+tl.to(svgWrapper, { scale: 0.42, duration: 2, ease: "power2.out" }, "<"); 
 
 // 3️⃣ Entrada del h1 desde la derecha
 tl.fromTo(
   heroTitle,
-  { x: 200, opacity: 0 }, // más lejos para que entre suavemente
+  { x: 200, opacity: 0 }, 
   { x: 0, opacity: 1, duration: 1.2, ease: "power2.out" },
   ">"
 );
@@ -76,16 +78,33 @@ tl.fromTo(
   ">"
 );
 
-// 5️⃣ Animación infinita de los <p> de la columna izquierda, añadida al final del timeline
+// 5️⃣ Animación infinita de los <p> de la columna izquierda con delay
 if (leftTexts.length > 0) {
-  leftTexts.forEach(el => gsap.set(el, { opacity: 0 })); // inicializamos invisible
-
-  const loopTl = gsap.timeline({ repeat: -1, repeatDelay: 1.5 });
   leftTexts.forEach(el => {
-    loopTl.to(el, { opacity: 1, duration: 1 })
-          .to(el, { opacity: 0, duration: 1, delay: 1.5 });
+    gsap.set(el, { opacity: 0 });
+    const link = el.querySelector('a');
+    if (link) link.style.setProperty('pointer-events', 'none'); // inactivo al inicio
   });
 
-  tl.add(loopTl, ">"); // se inicia solo después de que termine todo lo anterior
+  // Timeline de la columna izquierda con delay antes de empezar
+  const leftLoopTl = gsap.timeline({ repeat: -1, delay: 2 }); // <-- retraso de 1s antes de empezar
+
+  leftTexts.forEach(el => {
+    const link = el.querySelector('a');
+    leftLoopTl.to(el, {
+      opacity: 1,
+      duration: 1,
+      onStart: () => link && link.style.setProperty('pointer-events', 'auto') // activo al aparecer
+    })
+    .to(el, {
+      opacity: 0,
+      duration: 1,
+      delay: 1.5,
+      onComplete: () => link && link.style.setProperty('pointer-events', 'none') // desactivo al desaparecer
+    });
+  });
+
+  // Se inicia solo después de que termine el h1 y subtítulo
+  tl.add(leftLoopTl, ">"); 
 }
 </script>

@@ -7,7 +7,7 @@ interface Props {
 const { colorClass, dataIndex } = Astro.props;
 ---
 <button
-  class:list={["w-4 h-4 rounded-full hover:scale-120 cursor-pointer", colorClass]}
+  class:list={["w-4 2xl:w-5 h-4 2xl:h-5 rounded-full hover:scale-120 cursor-pointer", colorClass]}
   data-index={dataIndex}
   aria-label="Cambiar tema"
 ></button>

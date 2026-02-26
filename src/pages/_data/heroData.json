@@ -1,10 +1,20 @@
 {
   "leftColumn": [
-    "→ ¿Buscas un perfil híbrido que conecte las palabras y el código?",
-    "→ ¿IA y lingüística? Te cuento cómo trabajan juntas."
+    {
+      "text": "→ ¿Buscas un perfil híbrido que conecte las palabras y el código?",
+      "url": "/sobre-mi"
+    },
+    {
+      "text": "→ ¿IA y lingüística? Te cuento cómo trabajan juntas.",
+      "url": "/el-canal"
+    },
+    {
+      "text": "→ Si te gusta lo que hago, ¡ayúdame a comprar latitas a Talvi y Nami!",
+      "url": "/apoyame"
+    }
   ],
   "rightColumn": {
-    "title": "Donde la lingüística y la IA se encuentran...",
+    "title": "Donde la\n lingüística\n y la IA se\n encuentran...",
     "subtitle": "...y mis gatas encienden el debate."
   }
 }

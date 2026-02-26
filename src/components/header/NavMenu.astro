@@ -9,17 +9,17 @@ interface Props {
 }
 
 const {menuData} = Astro.props as Props;
-const currentPath = Astro.url.pathname;
+
 ---
 
-<nav class="header-nav">
+<nav class="header-nav mr-2 xl:mr-3 2xl:mr-5">
   <ul class="nav-list flex items-center w-full gap-6">
     {menuData.map(({href, label}) => {
       const isActive = href === Astro.url.pathname;
       return (
         <li class="nav-item">
           <a 
-  class={`nav-link font-deco text-sm 
+  class={`nav-link font-deco text-sm xl:text-base 2xl:text-lg
     ${isActive 
       ? 'underline underline-offset-4 decoration-current' 
       : 'hover:underline hover:decoration-accent_one hover:underline-offset-4'}`} 
