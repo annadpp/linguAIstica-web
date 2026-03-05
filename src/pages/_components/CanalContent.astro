@@ -4,32 +4,33 @@ import CanalDescription from "./CanalDescription.astro"
 import AIScrim from "@components/body/AIScrim.astro"
 import Logo from "../../layout/Logo.astro"
 ---
-<section class="flex-grow grid grid-cols-3 items-center">
-  <!-- Columna izquierda -->
-  <div class="col-span-1 h-full flex items-center justify-center px-10">
-    <AIScrim />
+<section class="relative overflow-hidden flex-grow grid lg:grid-cols-3 items-center">
+  
+  <!-- AIScrim fondo móvil -->
+  <div class="absolute top-0 left-0 w-full h-full lg:relative lg:col-span-1 lg:inset-auto lg:z-auto z-0 lg:pl-8">
+    <AIScrim class="w-full h-full object-cover" />
   </div>
-  <!-- Columna derecha -->
+
+  <!-- Columna derecha: contenido de texto -->
   <div
     class="
       col-span-2
       grid
-      px-20 py-6
+      px-15 lg:px-20 py-6
       font-sans
       xl:text-md 2xl:text-lg
-
-      max-h-[70vh]
-      overflow-y-auto
-      
+      max-h-[75vh]
+      overflow-y-auto z-10  lg:relative 
     "
   >
-    <p class="mb-6">
+    <p class="mb-4 bg-bg p-3 lg:p-0">
       <Logo class="font-bold text-xl" /> es el <strong class="font-deco">punto de encuentro entre la lingüística y la inteligencia artificial</strong>. Un espacio donde los debates de mis gatas, Talvi y Nami, se convierten en excusa para aprender. Directo al grano: <strong class="font-deco">con rigor, código</strong> si el tema lo pide <strong class="font-deco">y humor</strong> para que entender la IA no sea un suplicio. Tú eliges dónde seguirme:
-    </p>
+    </p >
     <div class="...">
-    {canalData.map((block) => (
-      <CanalDescription network={block.network} description={block.description} url={block.url} />
-    ))}
+      {canalData.map((block) => (
+        <CanalDescription network={block.network} description={block.description} url={block.url} />
+      ))}
+    </div>
   </div>
-  </div>
+
 </section>

@@ -30,6 +30,10 @@
   }
 }
 
+/* =========================
+   TEMAS
+========================= */
+
 .theme-white {
   --bg: #FBFBFB;
   --accent_one: #E0E0DB;
@@ -60,10 +64,12 @@ html {
   transition: background-color 0.3s, color 0.3s;
 }
 
-/* Contenedores con scroll */
+
 .custom-scroll {
   overflow-y: auto;
   scrollbar-gutter: stable;
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: var(--accent_one) transparent;
 }
 
 /* Chrome / Edge / Safari */
@@ -78,25 +84,17 @@ html {
 .custom-scroll::-webkit-scrollbar-thumb {
   background-color: var(--accent_one);
   border-radius: 9999px;
-  opacity: 1;
 }
 
-/* Hover */
-.custom-scroll::-webkit-scrollbar-thumb:hover {
-  opacity: 1;
-}
 
-/* Firefox */
-.custom-scroll {
-  scrollbar-width: thin;
-  scrollbar-color: var(--accent_one) transparent;
-}
+@media (min-width: 1024px) {
 
-/* Scroll discreto: solo visible al hover */
-.custom-scroll::-webkit-scrollbar-thumb {
-  background-color: transparent;
-}
+  .custom-scroll::-webkit-scrollbar-thumb {
+    background-color: transparent;
+  }
 
-.custom-scroll:hover::-webkit-scrollbar-thumb {
-  background-color: var(--accent_one);
+  .custom-scroll {
+    scrollbar-color: transparent transparent; /* Firefox */
+  }
+
 }

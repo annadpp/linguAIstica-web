@@ -4,14 +4,18 @@ import LogoGrande from "@shared/components/LogoGrande.astro";
 const { leftColumn, rightColumn } = heroData;
 ---
 
-<section class="relative flex-1 flex-grow grid grid-cols-2 overflow-hidden">
+<section class="relative flex-1 flex-grow grid grid-cols-1 lg:grid-cols-2 overflow-hidden pl-12 xl:px-20 py-6">
   <!-- SVG animado centrado -->
   <div id="hero-svg" class="col-span-2 absolute inset-0 flex items-center justify-center z-0">
-    <LogoGrande class="w-0 h-0" />
+    <LogoGrande
+      class="absolute left-1/2 top-40 sm:top-1/2 -translate-x-1/2 -translate-y-1/2 z-0 w-[200vw] lg:w-[150vw] h-[350vh] sm:h-[300vh] xl:h-[200vh] 2xl:h-[180vh]"
+    />
   </div>
 
-  <!-- Columna izquierda: texto abajo -->
-  <div class="flex flex-col justify-end md:text-sm lg:text-md xl:text-lg 2xl:text-xl font-inter p-10 relative z-10" id="left-column">
+  <!-- Columna izquierda -->
+  <div
+    id="left-column" class="flex flex-col justify-end text-sm md:text-lg lg:text-base xl:text-lg 2xl:text-xl font-inter relative z-10 pr-9 lg:pr-12 xl:pr-0 md:pl-6 pl-0 lg:pl-3 2xl:pl-10 pb-3 lg:pb-0 order-2 lg:order-1 col-span-1"
+  >
     {leftColumn?.map((item, index) => (
       <p class={`left-text ${index === 0 ? 'mb-2' : ''}`}>
         <a href={item.url}>{item.text}</a>
@@ -19,10 +23,10 @@ const { leftColumn, rightColumn } = heroData;
     ))}
   </div>
 
-  <!-- Columna derecha: texto centrado verticalmente con overflow-hidden -->
-  <div class="h-full flex flex-col justify-center text-left font-deco md:px-[6vw] lg:px-[7vw] relative overflow-hidden">
-    <h1 id="hero-title" class="md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold mb-4 leading-tight whitespace-pre-line">{rightColumn.title}</h1>
-    <p id="hero-subtitle" class="md:text-md lg:text-lg xl:text-xl 2xl:text-2xl lg:pt-6 xl:pt-8 2xl:pt-10 font-inter">{rightColumn.subtitle}</p>
+  <!-- Columna derecha -->
+  <div class="h-full flex flex-col justify-center text-left font-deco md:px-[15vw] lg:px-0 xl:px-[3vw] pt-10 lg:pt-0 relative overflow-hidden order-1 lg:order-2 col-span-1">
+    <h1 id="hero-title"class="text-4xl md:text-5xl xl:text-6xl 2xl:text-7xl font-bold mb-4 leading-tight whitespace-pre-line lg:pl-5 3"> {rightColumn.title}</h1>
+    <p id="hero-subtitle" class="text-right text-lg md:text-2xl lg:text-xl 2xl:text-2xl lg:pt-6 xl:pt-8 2xl:pt-10 pr-9 lg:pr-15 xl:pr-0 font-inter whitespace-pre-line" > {rightColumn.subtitle}</p>
   </div>
 </section>
 

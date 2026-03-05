@@ -8,23 +8,23 @@ export interface Props {
 const { title, description, url } = Astro.props;
 ---
 
-<div class="mb-8">
-  <div class="border-b-2 w-110 mb-4">
+<div class="mb-4">
+  <div class="border-b-2 w-2/3 lg:w-110 mb-4">
     {url ? (
       <a
         href={url}
         class="inline-block text-xl font-bold mb-2 font-deco hover:scale-110"
       >
-        <h3 class="text-xl font-bold mb-2 font-deco">
+        <h3 class="text-base lg:text-xl font-bold font-deco pl-3 lg:p-0">
           {title}
         </h3>
       </a>
     ) : (
-      <h3 class="text-xl font-bold mb-2 font-deco">
+      <h3 class="text-base lg:text-xl font-bold mb-2 font-deco  pl-3 lg:p-0">
         {title}
       </h3>
     )}
   </div>
 
-  <p class="text-gray-700">{description}</p>
+  <p class="mb-4 bg-bg lg:bg-transparent px-3 lg:p-0">{description}</p>
 </div>

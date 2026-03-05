@@ -2,24 +2,21 @@
 import Logo from "../../layout/Logo.astro"
 import LogoScrim from "@components/body/LogoScrim.astro"
 ---
-<section class="flex-grow grid grid-cols-3 items-center">
+<section class="relative overflow:hidden flex-grow grid lg:grid-cols-3 items-center">
   <!-- Columna izquierda -->
   <div
     class="
       col-span-2
       grid
-      px-20 py-6
+      px-15 lg:px-20 py-6
       font-sans
       xl:text-md 2xl:text-lg
 
-      max-h-[70vh]
-      overflow-y-auto
-      
+      max-h-[75vh]
+      overflow-y-auto z-10  lg:relative
     "
-  >
-    <!-- Wrapper que decide: centro si cabe / arriba si no -->
-   
-      <p class="mb-4">
+  >   
+      <p class="mb-4 bg-bg p-3 lg:p-0">
         <strong class="font-deco">En mi casa, Talvi y Nami</strong> (mis gatas) <strong class="font-deco">no se ponen de acuerdo</strong>. 
         Talvi (la lingüista) defiende que el lenguaje humano es el sistema más complejo 
         y sofisticado que existe. Nami (la técnica) resopla y suelta que con el código 
@@ -28,7 +25,7 @@ import LogoScrim from "@components/body/LogoScrim.astro"
         y te lo cuento</strong>.
       </p>
 
-      <p class="mb-4">
+      <p class="mb-4 bg-bg p-3 lg:p-0">
         <strong class="font-deco">Llevo más de 7 años trabajando como project manager</strong>, gestionando 
         proyectos de <strong class="font-deco">localización y NLP</strong>, actuando de <strong class="font-deco">puente entre equipos técnicos y 
         lingüísticos</strong>. Pero siempre me ha fascinado algo más profundo: cómo las máquinas 
@@ -37,7 +34,7 @@ import LogoScrim from "@components/body/LogoScrim.astro"
         (los famosos LLMs, en inglés).
       </p>
 
-      <p class="mb-4">
+      <p class="mb-4 bg-bg p-3 lg:p-0">
         Mi objetivo es <strong class="font-deco">construir puentes entre la lingüística tradicional y la ingeniería 
         del lenguaje</strong>. <strong class="font-deco">Mi perfil es híbrido</strong>: me siento igual de cómoda 
         discutiendo sobre sintaxis generativa que debugueando un tokenizador. Y esa doble 
@@ -46,15 +43,15 @@ import LogoScrim from "@components/body/LogoScrim.astro"
         aprendiendo a hablar (y cómo nosotros les enseñamos).
       </p>
 
-      <p class="pt-6 font-bold">Así que si has llegado hasta aquí...</p>
+      <p class="pt-6 font-bold bg-bg p-3 lg:p-0">Así que si has llegado hasta aquí...</p>
 
-      <p>
+      <p class="bg-bg p-3 lg:p-0">
         → <strong class="font-deco underline">Si eres reclutador</strong>, echa un vistazo a mi perfil de
         <a href="https://linkedin.com/in/annadepablopuig" class="font-deco font-bold">LinkedIn</a>.
         Quizás te encajo en alguna <strong class="font-deco">posición relacionada con el NLP, la IA, gestión de proyectos o producto</strong>.
       </p>
 
-      <p>
+      <p class="bg-bg p-3 lg:p-0">
         → <strong class="font-deco"><span class="underline">Si eres de los que curiosean</span>, suscríbete a</strong>
         mi canal, <Logo class="font-bold text-xl" />,
         donde cada semana tendremos un debate nuevo entre Talvi y Nami (y yo intentaré poner orden).
@@ -63,7 +60,8 @@ import LogoScrim from "@components/body/LogoScrim.astro"
 
 
   <!-- Columna derecha -->
-  <div class="col-span-1 h-full flex items-center justify-center px-10">
-  <LogoScrim />
+
+<div class="absolute inset-0 z-0 flex items-center justify-center w-full h-full lg:relative lg:col-span-1 lg:inset-auto lg:z-auto pr-4 lg:pr-8">
+  <LogoScrim class="w-full h-full object-cover absolute inset-0 " />
 </div>
 </section>

@@ -1,15 +1,99 @@
 ---
+import { Icon } from 'astro-icon/components';
 import NavMenu from "./NavMenu.astro";
 import menuData from "../../pages/_data/menuData.json";
 import ButtonTheme from "@shared/components/ButtonTheme.astro";
 import Logo from "../../layout/Logo.astro";
 ---
 
-<header class="header flex items-center justify-between px-4 2xl:px-8 pb-4 2xl:pb-7 border-b-2 m-5 2xl:m-8 font-bold">
-  <a href="/" class="header-logo "><Logo class="text-xl xl:text-2xl 2xl:text-3xl transition-transform duration-300 hover:scale-110" /></a>
-  <div class="2xl:text-2xl header-container flex gap-5 items-center">
-    <NavMenu menuData={menuData}/>
-    <ButtonTheme colorClass="bg-accent_two" dataIndex="0" />
-    <ButtonTheme colorClass="bg-accent_one" dataIndex="1" />
+<header class="header flex flex-col lg:flex-row items-start lg:items-center justify-between lg:px-4 2xl:px-8 pb-4 2xl:pb-7 border-b-2 m-5 2xl:m-8 font-bold z-20 bg-bg">
+  
+  <div class="flex w-full justify-between items-center ">
+    <a href="/" class="header-logo ml-3 lg:mr-0 ">
+      <Logo class="text-xl xl:text-2xl 2xl:text-3xl transition-transform duration-300 hover:scale-110" />
+    </a>
+
+    <!-- DESKTOP -->
+    <div class="hidden lg:flex 2xl:text-2xl header-container gap-5 items-center">
+      <NavMenu menuData={menuData}/>
+      <ButtonTheme colorClass="bg-accent_two" dataIndex="0" />
+      <ButtonTheme colorClass="bg-accent_one" dataIndex="1" />
+    </div>
+
+    <!-- MOBILE -->
+    <div class="flex lg:hidden 2xl:text-2xl header-container gap-5 items-center">
+      <ButtonTheme colorClass="bg-accent_two" dataIndex="0" />
+      <ButtonTheme colorClass="bg-accent_one" dataIndex="1" />
+
+      <!-- Menú hamburguesa -->
+<button
+  id="mobile-menu-btn"
+  class="relative w-5 h-5 mr-3  cursor-pointer"
+>
+  <!-- ICONO MENU -->
+  <span class="icon icon-open">
+    <Icon name="ri:menu-fill" class="w-5 h-6" />
+  </span>
+
+  <!-- ICONO CLOSE -->
+  <span class="icon icon-close">
+    <Icon name="ri:close-large-line" class="w-5 h-6" />
+  </span>
+</button>
+    </div>
+  </div>
+
+  <!-- Nav menú desplegable MOBILE -->
+  <div
+    id="mobile-menu"
+    class="hidden lg:hidden mt-4 w-full pt-5 border-t-2 flex flex-row justify-center text-center pb-4"
+  >
+    <NavMenu menuData={menuData} />
   </div>
 </header>
+
+<style>
+  /* Ambos iconos superpuestos */
+  .icon {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition:
+      opacity 200ms ease,
+      transform 200ms ease;
+  }
+
+  /* Estado inicial */
+  .icon-open {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+
+  .icon-close {
+    opacity: 0;
+    transform: scale(0.6) rotate(-90deg);
+  }
+
+  /* Estado abierto */
+  #mobile-menu-btn.is-open .icon-open {
+    opacity: 0;
+    transform: scale(0.6) rotate(90deg);
+  }
+
+  #mobile-menu-btn.is-open .icon-close {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+</style>
+
+<script is:inline type="module">
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+
+  btn.addEventListener('click', () => {
+    menu.classList.toggle('hidden');
+    btn.classList.toggle('is-open');
+  });
+</script>

@@ -13,11 +13,11 @@ const {menuData} = Astro.props as Props;
 ---
 
 <nav class="header-nav mr-2 xl:mr-3 2xl:mr-5">
-  <ul class="nav-list flex items-center w-full gap-6">
+  <ul class="nav-list lg:flex items-center w-full gap-6">
     {menuData.map(({href, label}) => {
       const isActive = href === Astro.url.pathname;
       return (
-        <li class="nav-item">
+        <li class="nav-item py-3 lg:py-0">
           <a 
   class={`nav-link font-deco text-sm xl:text-base 2xl:text-lg
     ${isActive 

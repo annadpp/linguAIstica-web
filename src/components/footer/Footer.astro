@@ -1,11 +1,17 @@
 ---
 import SocialMenu from './SocialMenu.astro';
 import socialData from "./socialData.json";
+import Logo from '../../layout/Logo.astro';
 ---
 
-<footer class="header flex items-center justify-between px-4 2xl:px-8 pt-4 2xl:pt-7 border-t-2 m-5 2xl:m-8 font-deco">
-  <SocialMenu socialData={socialData} />
-  <div class="header-container flex gap-5 items-center">
-    <p class="font-deco font-bold text-xs xl:text-sm 2xl:text-base">© linguAIstica 2026</p>
+<footer class="header flex flex-col md:flex-row items-center justify-between px-4 2xl:px-8 pt-4 2xl:pt-7 border-t-2 m-5 2xl:m-8 font-deco gap-2 lg:gap-0">
+  <div> 
+    <SocialMenu socialData={socialData} />
+  </div>
+ 
+  <div class="header-container flex lg:gap-5 items-center">
+    <p class="font-deco font-bold text-xs xl:text-sm 2xl:text-base">
+      © <Logo class="text-base xl:text-lg 2xl:text-xl"/> 2026
+    </p>
   </div>
 </footer>
